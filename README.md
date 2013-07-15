@@ -6,7 +6,7 @@ Fetch package download counts for packages from the npm registry
 
 [![Build Status](https://secure.travis-ci.org/rvagg/npm-download-counts.png)](http://travis-ci.org/rvagg/npm-download-counts)
 
-[![NPM](http://nodei.co/npm/npm-download-counts.png)](http://nodei.co/npm/npm-download-counts/)
+[![NPM](http://nodei.co/npm/npm-download-counts.png?)](http://nodei.co/npm/npm-download-counts/)
 
 *Note: the npm download counts are pretty dodgy for a number of reasons, you probably shouldn't pretend they are accurate.*
 
