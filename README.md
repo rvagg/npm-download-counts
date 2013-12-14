@@ -11,8 +11,7 @@ Fetch package download counts for packages from the npm registry
 *Note: the npm download counts are pretty dodgy for a number of reasons, you probably shouldn't pretend they are accurate.*
 
 ```js
-const assert = require('assert')
-    , moment = require('moment')
+const moment = require('moment')
     , downloadCounts = require('npm-download-counts')
 
     , pkg    = 'levelup'
