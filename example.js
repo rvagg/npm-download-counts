@@ -11,6 +11,8 @@ downloadCounts(
   , start
   , end
   , function (err, data) {
+      if (err)
+        throw err
       data.forEach(function (d, i) {
         console.log('On %s, %s was downloaded ~%d times', d.day, pkg, d.count)
       })
