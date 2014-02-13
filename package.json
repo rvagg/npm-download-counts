@@ -5,7 +5,7 @@
     "Rod Vagg <r@va.gg> (https://github.com/rvagg)"
   ],
   "keywords": [],
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "npm-download-counts.js",
   "dependencies": {
     "hyperquest": "~0.2.0",
