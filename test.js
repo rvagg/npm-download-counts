@@ -3,8 +3,8 @@ const assert = require('assert')
     , downloadCounts = require('./')
 
     , pkg    = 'levelup'
-    , start  = moment().subtract('months', 1).zone(0).toDate()
-    , end    = new Date()
+    , start  = moment().subtract('months', 3).zone(0).toDate()
+    , end    = moment().subtract('months', 2).zone(0).toDate()
 
 var timer = setTimeout(function () {
       assert(false, 'didn\'t get called in good time')
