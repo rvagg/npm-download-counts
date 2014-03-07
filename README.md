@@ -4,9 +4,9 @@ npm-download-counts
 Fetch package download counts for packages from the npm registry
 ----------------------------------------------------------------
 
-[![Build Status](https://secure.travis-ci.org/rvagg/npm-download-counts.png)](http://travis-ci.org/rvagg/npm-download-counts)
+[![Build Status](https://secure.travis-ci.org/rvagg/npm-download-counts.svg)](http://travis-ci.org/rvagg/npm-download-counts)
 
-[![NPM](https://nodei.co/npm/npm-download-counts.png?)](https://nodei.co/npm/npm-download-counts/)
+[![NPM](https://nodei.co/npm/npm-download-counts.svg?)](https://nodei.co/npm/npm-download-counts/)
 
 *Note: the npm download counts are pretty dodgy for a number of reasons, you probably shouldn't pretend they are accurate.*
 
@@ -42,10 +42,18 @@ On 2013-06-18, levelup was downloaded ~141 times
 ...
 ```
 
+<a name="collaborators"></a>
+Collaborators
+-------------
+
+ * Rod Vagg [@rvagg] (https://github.com/rvagg)
+ * Dav Glass [@davglass](https://github.com/davglass)
+
+
 <a name="licence"></a>
 Licence &amp; copyright
 -------------------
 
-Copyright (c) 2013 Rod Vagg.
+Copyright (c) 2014 Rod Vagg and Contributors (above)
 
 npm-download-counts is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
