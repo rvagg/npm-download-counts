@@ -1,6 +1,5 @@
 const hyperquest = require('hyperquest')
     , bl         = require('bl')
-    , qs         = require('querystring')
 
 function day (s) {
   if (!(s instanceof Date)) {
@@ -13,18 +12,7 @@ function day (s) {
 
 
 function downloadCounts (pkg, start, end, callback) {
-  var startkey   = [ pkg, day(start) ]
-    , endkey     = [ pkg, day(end)   ]
-    , grouplevel = 2
-                   // hardwired url cause I don't think anyone bothers
-                   // replicating this
-    , url        = 'http://isaacs.iriscouch.com/downloads/_design/app/_view/pkg?'
-        + qs.stringify({
-              startkey    : JSON.stringify(startkey)
-            , endkey      : JSON.stringify(endkey)
-            , group_level : grouplevel
-          })
-
+  var url        = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg 
   hyperquest.get(url).pipe(bl(function (err, body) {
     if (err)
       return callback(err)
@@ -39,16 +27,13 @@ function downloadCounts (pkg, start, end, callback) {
     if (doc.error) {
       return callback(new Error(
           'registry error: '
-          + doc.error
-          + ' ('
-          + (doc.reason || 'reason unknown')
-          + ')'))
+          + doc.error ))
     }
 
-    callback(null, doc.rows.map(function (row) {
+    callback(null, doc.downloads.map(function (row) {
       return {
-          day   : row.key[1]
-        , count : row.value
+          day   : row.day
+        , count : row.downloads
       }
     }))
   }))
