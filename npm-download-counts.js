@@ -21,8 +21,11 @@ function downloadCounts (pkg, start, end, callback) {
     try {
       doc = JSON.parse(body)
     } catch (e) {
-      callback(err)
+      return callback(err)
     }
+
+    if (!doc)
+      return callback(new Error('no document returned'))
 
     if (doc.error) {
       return callback(new Error(
