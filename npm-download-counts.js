@@ -1,37 +1,37 @@
 var jsonist = require('jsonist')
 
-
 function day (s) {
   if (!(s instanceof Date)) {
-    if (!Date.parse(s))
+    if (!Date.parse(s)) {
       return null
+    }
     s = new Date(s)
   }
   return s.toISOString().substr(0, 10)
 }
 
-
 function downloadCounts (pkg, start, end, callback) {
-  var url = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg 
+  var url = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg
 
+  console.log(url)
   jsonist.get(url, function (err, doc) {
-    if (err)
+    if (err) {
       return callback(err)
-
-    if (!doc)
+    }
+    if (!doc) {
       return callback(new Error('no document returned'))
-
-    if (doc.error)
-      return callback(new Error('registry error: ' + doc.error ))
+    }
+    if (doc.error) {
+      return callback(new Error('registry error: ' + doc.error))
+    }
 
     callback(null, doc.downloads.map(function (row) {
       return {
-          day   : row.day
-        , count : row.downloads
+        day: row.day,
+        count: row.downloads
       }
     }))
   })
 }
-
 
 module.exports = downloadCounts
