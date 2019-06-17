@@ -13,7 +13,6 @@ function day (s) {
 function downloadCounts (pkg, start, end, callback) {
   var url = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg
 
-  console.log(url)
   jsonist.get(url, function (err, doc) {
     if (err) {
       return callback(err)
