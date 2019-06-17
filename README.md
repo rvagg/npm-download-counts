@@ -4,31 +4,25 @@ npm-download-counts
 Fetch package download counts for packages from the npm registry
 ----------------------------------------------------------------
 
-[![Build Status](https://secure.travis-ci.org/rvagg/npm-download-counts.svg)](http://travis-ci.org/rvagg/npm-download-counts)
-
-[![NPM](https://nodei.co/npm/npm-download-counts.svg?)](https://nodei.co/npm/npm-download-counts/)
-
-*Note: the npm download counts are pretty dodgy for a number of reasons, you probably shouldn't pretend they are accurate.*
-
 ```js
 const moment = require('moment')
-    , downloadCounts = require('npm-download-counts')
+const downloadCounts = require('npm-download-counts')
 
-    , pkg    = 'levelup'
-    , start  = moment().subtract('months', 1).toDate() // start date for lookup
-    , end    = new Date()                              // end date for lookup
+const pkg = 'levelup'
+const start = moment().subtract('months', 1).toDate() // start date for lookup
+const end = new Date() // end date for lookup
 
 downloadCounts(
-    pkg
-  , start
-  , end
-  , function (err, data) {
-      // `data` is an array of objects with `day` and `count` properties
-      // each element of the array represents a day in your date range
-      data.forEach(function (d, i) {
-        console.log('On %s, %s was downloaded ~%d times', d.day, pkg, d.count)
-      })
-    }
+  pkg,
+  start,
+  end,
+  function (err, data) {
+    // `data` is an array of objects with `day` and `count` properties
+    // each element of the array represents a day in your date range
+    data.forEach(function (d, i) {
+      console.log(`On ${d.day}, ${pkg} was downloaded ~${d.count} times`)
+    })
+  }
 )
 ```
 
@@ -49,11 +43,10 @@ Collaborators
  * Rod Vagg [@rvagg] (https://github.com/rvagg)
  * Dav Glass [@davglass](https://github.com/davglass)
 
-
 <a name="licence"></a>
 Licence &amp; copyright
 -------------------
 
-Copyright (c) 2014 Rod Vagg and Contributors (above)
+Copyright (c) 2014 Rod Vagg
 
-npm-download-counts is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
+npm-download-counts is licensed under an MIT license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
