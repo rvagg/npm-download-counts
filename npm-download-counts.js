@@ -1,4 +1,6 @@
-var jsonist = require('jsonist')
+const promisify = require('util').promisify
+const jsonist = require('jsonist')
+const get = promisify(jsonist.get)
 
 function day (s) {
   if (!(s instanceof Date)) {
@@ -10,26 +12,27 @@ function day (s) {
   return s.toISOString().substr(0, 10)
 }
 
-function downloadCounts (pkg, start, end, callback) {
-  var url = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg
+async function downloadCounts (pkg, start, end, token) {
+  let url = 'https://api.npmjs.org/downloads/range/' + day(start) + ':' + day(end) + '/' + pkg
+  let options = {}
 
-  jsonist.get(url, function (err, doc) {
-    if (err) {
-      return callback(err)
-    }
-    if (!doc) {
-      return callback(new Error('no document returned'))
-    }
-    if (doc.error) {
-      return callback(new Error('registry error: ' + doc.error))
-    }
+  if (typeof token === 'string') { // could be null
+    options.headers = { 'Authorization': `Bearer ${token}` }
+  }
 
-    callback(null, doc.downloads.map(function (row) {
-      return {
-        day: row.day,
-        count: row.downloads
-      }
-    }))
+  let doc = await get(url, options)
+  if (!doc) {
+    throw new Error('no document returned')
+  }
+  if (doc.error) {
+    throw new Error('registry error: ' + doc.error)
+  }
+
+  return doc.downloads.map((row) => {
+    return {
+      day: row.day,
+      count: row.downloads
+    }
   })
 }
 

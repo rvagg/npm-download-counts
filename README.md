@@ -12,18 +12,12 @@ const pkg = 'levelup'
 const start = moment().subtract('months', 1).toDate() // start date for lookup
 const end = new Date() // end date for lookup
 
-downloadCounts(
-  pkg,
-  start,
-  end,
-  function (err, data) {
-    // `data` is an array of objects with `day` and `count` properties
-    // each element of the array represents a day in your date range
-    data.forEach(function (d, i) {
-      console.log(`On ${d.day}, ${pkg} was downloaded ~${d.count} times`)
-    })
-  }
-)
+let data = await downloadCounts(pkg, start, end)
+// `data` is an array of objects with `day` and `count` properties
+// each element of the array represents a day in your date range
+data.forEach(function (d, i) {
+  console.log(`On ${d.day}, ${pkg} was downloaded ~${d.count} times`)
+})
 ```
 
 Gives you something like:
@@ -35,6 +29,9 @@ On 2013-06-17, levelup was downloaded ~57 times
 On 2013-06-18, levelup was downloaded ~141 times
 ...
 ```
+
+* To make authenticated calls, supply a token from an npm account as the 4th argument.
+* If you supply a callback as the last argument, it won't return a `Promise` and can be used in standard error-first callback style.
 
 <a name="collaborators"></a>
 Collaborators
